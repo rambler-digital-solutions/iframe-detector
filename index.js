@@ -4,16 +4,16 @@ window.addEventListener('load', function() {
   for (var i = 0, len = allFrames.length; i < len; i++) {
     allFrames[i].setAttribute('visible', false);
   }
-  sendMessage(allFrames);
+
+  prepairSending(allFrames);
 
   window.addEventListener('scroll', function() {
     window.requestAnimationFrame(function() {
-      sendMessage(allFrames);
+      prepairSending(allFrames);
     });
   });
 
-
-  function sendMessage(inputFrames) {
+  function prepairSending(inputFrames) {
     var frames = inputFrames;
     var postMessageData = {};
 
@@ -26,18 +26,17 @@ window.addEventListener('load', function() {
         if (visible === 'false') {
           thisFrame.setAttribute('visible', true);
           postMessageData.visible = true;
-          thisFrame.contentWindow.postMessage(postMessageData, src);
+          sendMessage(thisFrame, postMessageData, src)
         }
       } else {
         if (visible === 'true') {
           thisFrame.setAttribute('visible', false);
           postMessageData.visible = false;
-          thisFrame.contentWindow.postMessage(postMessageData, src);
+          sendMessage(thisFrame, postMessageData, src)
         }
       }
     }
   }
-
 
   function isInViewport(element) {
     var rect = element.getBoundingClientRect();
@@ -45,5 +44,9 @@ window.addEventListener('load', function() {
     var elementVisibility = (rect.top + halfHeight) >= 0
       && (rect.bottom - halfHeight) <= (window.innerHeight || document.documentElement.clientHeight);
     return elementVisibility;
+  }
+
+  function sendMessage(frame, data, src) {
+    frame.contentWindow.postMessage(data, src);
   }
 });
