@@ -24,9 +24,9 @@ window.addEventListener('load', function() {
 
       if (isInViewport(thisFrame)) {
         if (visible === 'false') {
+          thisFrame.setAttribute('visible', true);
           postMessageData.visible = true;
           thisFrame.contentWindow.postMessage(postMessageData, src);
-          thisFrame.setAttribute('visible', true);
         }
       } else {
         if (visible === 'true') {
@@ -41,9 +41,9 @@ window.addEventListener('load', function() {
 
   function isInViewport(element) {
     var rect = element.getBoundingClientRect();
-    var html = document.documentElement;
-    var elementVisibility = rect.top >= 0
-      && rect.bottom <= (window.innerHeight || html.clientHeight);
+    var halfHeight = element.offsetHeight / 2;
+    var elementVisibility = (rect.top + halfHeight) >= 0
+      && (rect.bottom - halfHeight) <= (window.innerHeight || document.documentElement.clientHeight);
     return elementVisibility;
   }
 });
