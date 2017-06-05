@@ -1,10 +1,12 @@
 window.addEventListener('load', function() {
-  var allFrames = document.getElementsByTagName('iframe');
+  var allFrames = document.querySelectorAll('[data-detection][src]');
+  detectFrames(allFrames);
+});
 
+function detectFrames(allFrames) {
   for (var i = 0, len = allFrames.length; i < len; i++) {
     allFrames[i].setAttribute('visible', false);
   }
-
   prepairSending(allFrames);
 
   window.addEventListener('scroll', function() {
@@ -49,4 +51,4 @@ window.addEventListener('load', function() {
   function sendMessage(frame, data, src) {
     frame.contentWindow.postMessage(data, src);
   }
-});
+}
