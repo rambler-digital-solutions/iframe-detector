@@ -1,5 +1,5 @@
 window.addEventListener('load', function() {
-  var allFrames = document.querySelectorAll('[data-detection][src]');
+  var allFrames = document.querySelectorAll('iframe[data-detection=true][src]');
   detectFrames(allFrames);
 });
 
