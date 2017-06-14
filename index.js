@@ -24,6 +24,10 @@ function detectFrames(allFrames) {
       var src = thisFrame.getAttribute('src');
       var visible = thisFrame.getAttribute('visible');
 
+      if (src.indexOf('http') === -1) {
+        src = window.location.protocol + src;
+      }
+
       if (isInViewport(thisFrame)) {
         if (visible === 'false') {
           thisFrame.setAttribute('visible', true);
