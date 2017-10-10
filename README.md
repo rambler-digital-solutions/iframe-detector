@@ -1,2 +1,2 @@
 # iframe-detector
-[demo](https://alivedd.github.io/framesDetectionExample/)
+[demo page](https://alivedd.github.io/framesDetectionExample/)
