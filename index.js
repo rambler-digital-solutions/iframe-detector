@@ -1,5 +1,5 @@
 window.addEventListener('load', function() {
-  var allFrames = document.querySelectorAll('iframe[data-detection=true][src]');
+  var allFrames = document.querySelectorAll('iframe[src*=eagleplatform]');
   detectFrames(allFrames);
 });
 
