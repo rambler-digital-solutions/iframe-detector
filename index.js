@@ -1,9 +1,9 @@
 window.addEventListener('load', function() {
-  var allFrames = document.querySelectorAll('iframe[src*=eagleplatform]');
-  detectFrames(allFrames);
+  var eagleFrames = document.querySelectorAll('iframe[src*=eagleplatform]');
+  initEagleFeatures(eagleFrames);
 });
 
-function detectFrames(allFrames) {
+function initEagleFeatures(allFrames) {
   for (var i = 0, len = allFrames.length; i < len; i++) {
     allFrames[i].setAttribute('visible', false);
   }
